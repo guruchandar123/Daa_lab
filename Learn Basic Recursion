@@ -1,0 +1,256 @@
+1 ) Print name N times using recursion
+
+
+import java.io.*;
+import java.util.*;
+
+class Main {
+    // Driver code
+    public static void main(String[] args) throws Exception {
+        BufferedReader br =
+            new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+        while (t-- > 0) {
+            int n = Integer.parseInt(br.readLine().trim());
+            Solution obj = new Solution();
+            obj.printGfg(n);
+            System.out.println();
+        
+System.out.println("~");
+}
+    }
+}
+class Solution {
+
+    void printGfg(int N) {
+        if (N == 0) {
+            return;
+        }
+        
+        System.out.print("GFG ");
+        
+        printGfg(N - 1);
+    }
+}
+
+
+
+	
+2 ) Print 1 to N using recursion
+
+import java.io.*;
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+        while (T-- > 0) {
+            // creating an object of class Print
+            Solution obj = new Solution();
+            int N;
+            N = sc.nextInt();
+            obj.printNos(N);
+            System.out.println();
+
+            System.out.println("~");
+        }
+    }
+}
+
+class Solution {
+
+    public void printNos(int n) {
+        if (n == 0) {
+            return;
+        }
+        
+        printNos(n - 1);
+        
+        System.out.print(n + " ");
+    }
+}
+
+3 ) 	
+Print N to 1 using recursion
+
+
+
+//{ Driver Code Starts
+import java.io.*;
+import java.util.*;
+
+class Main {
+    // Driver code
+    public static void main(String[] args) throws Exception {
+        BufferedReader br =
+            new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+        while (t-- > 0) {
+            int N = Integer.parseInt(br.readLine().trim());
+            Solution obj = new Solution();
+            obj.printNos(N);
+            System.out.println();
+        
+System.out.println("~");
+}
+    }
+}
+// } Driver Code Ends
+
+class Solution {
+    void printNos(int N) {
+        if (N > 0) {
+            System.out.print(N + " ");  
+            printNos(N - 1);  
+        }
+    }
+}
+
+
+4 ) 	Sum of first N numbers
+
+
+import java.io.*;
+import java.util.*;
+
+class GFG {
+    public static void main(String args[]) throws IOException {
+        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(read.readLine());
+        while (t-- > 0) {
+            int N = Integer.parseInt(read.readLine());
+            Solution ob = new Solution();
+            System.out.println(ob.sumOfSeries(N));
+
+            System.out.println("~");
+        }
+    }
+}
+class Solution {
+    int sumOfSeries(int n) {  
+        int sum = 0;
+        for (int i = 1; i <= n; i++) {
+            sum += i * i * i;
+        }
+        return sum;
+    }
+}
+
+
+
+4 ) Factorial of N numbers
+
+
+import java.io.*;
+import java.util.*;
+
+class GFG {
+    public static void main(String args[]) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            long N = sc.nextLong();
+
+            Solution ob = new Solution();
+            ArrayList<Long> ans = ob.factorialNumbers(N);
+            for (long num : ans) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+class Solution {
+    public ArrayList<Long> factorialNumbers(long n) {
+        ArrayList<Long> result = new ArrayList<>();
+        long fact = 1;
+        for (int i = 1; fact <= n; i++) {
+            fact *= i;
+            if (fact <= n) {
+                result.add(fact);
+            }
+        }
+        return result;
+    }
+}
+
+5 ) 	Reverse an array
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String args[]) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int tc = Integer.parseInt(br.readLine());
+
+        while (tc-- > 0) {
+            String str[] = br.readLine().split(" ");
+            int arr[] = new int[str.length];
+
+            for (int i = 0; i < str.length; i++) arr[i] = Integer.parseInt(str[i]);
+            Solution obj = new Solution();
+
+            obj.reverseArray(arr);
+            for (int i = 0; i < arr.length; i++) {
+                System.out.print(arr[i] + " ");
+            }
+            System.out.println();
+            System.out.println("~");
+        }
+    }
+}
+class Solution {
+    public void reverseArray(int[] arr) {
+        int left = 0, right = arr.length - 1;
+        while (left < right) {
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+    }
+}
+
+6 )  Check if a string is palindrome or not
+
+class Solution {
+    public boolean isPalindrome(String s) {
+        s = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        int left = 0, right = s.length() - 1;
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
+
+
+7 ) Fibonacci Number 
+
+class Solution {
+    public int fib(int n) {
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+        int a = 0, b = 1;
+        for (int i = 2; i <= n; i++) {
+            int temp = a + b;
+            a = b;
+            b = temp;
+        }
+        return b;
+    }
+}
+
+
+
+
