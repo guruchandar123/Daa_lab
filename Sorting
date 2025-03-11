@@ -1,0 +1,371 @@
+1 )  	Selection Sort
+
+
+import java.io.*;
+import java.util.*;
+
+class IntArray {
+    public static int[] input(BufferedReader br, int n) throws IOException {
+        String[] s = br.readLine().trim().split(" ");
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) a[i] = Integer.parseInt(s[i]);
+
+        return a;
+    }
+
+    public static void print(int[] a) {
+        for (int e : a) System.out.print(e + " ");
+        System.out.println();
+    }
+
+    public static void print(ArrayList<Integer> a) {
+        for (int e : a) System.out.print(e + " ");
+        System.out.println();
+    }
+}
+
+class GFG {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+
+        while (t-- > 0) {
+            String arr[] = br.readLine().split(" ");
+            int a[] = new int[arr.length];
+
+            for (int i = 0; i < arr.length; i++) {
+                a[i] = Integer.parseInt(arr[i]);
+            }
+
+            Solution obj = new Solution();
+            obj.selectionSort(a);
+
+            IntArray.print(a);
+            System.out.println("~");
+        }
+    }
+}
+class Solution {
+    void selectionSort(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            int minIdx = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[minIdx]) {
+                    minIdx = j;
+                }
+            }
+            int temp = arr[minIdx];
+            arr[minIdx] = arr[i];
+            arr[i] = temp;
+        }
+    }
+}
+
+2 ) 	Bubble Sort
+
+
+
+import java.io.*;
+import java.util.*;
+
+class Solution {
+    // Function to sort the array using bubble sort algorithm.
+    public static void bubbleSort(int arr[]) {
+        int n = arr.length;
+        
+        for (int i = 0; i < n - 1; i++) {
+            boolean swapped = false;             
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // Swap arr[j] and arr[j + 1]
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+            if (!swapped) {
+                break;
+            }
+        }
+    }
+}
+
+class Sorting {
+
+    static void printArray(int arr[]) {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i) System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim()); // Inputting the testcases
+        while (t > 0) {
+            String inputLine[] = br.readLine().trim().split(" ");
+            int n = inputLine.length;
+            int arr[] = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = Integer.parseInt(inputLine[i]);
+            }
+            new Solution().bubbleSort(arr);
+            printArray(arr);
+
+            t--;
+        }
+    }
+}
+
+
+3 ) Merge sort 
+
+
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+class Main {
+    public static void main(String args[]) throws IOException {
+        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(read.readLine());
+
+        while (t-- > 0) {
+
+            ArrayList<Integer> array1 = new ArrayList<Integer>();
+            String line = read.readLine();
+            String[] tokens = line.split(" ");
+            for (String token : tokens) {
+                array1.add(Integer.parseInt(token));
+            }
+            ArrayList<Integer> v = new ArrayList<Integer>();
+            int[] arr = new int[array1.size()];
+            int idx = 0;
+            for (int i : array1) arr[idx++] = i;
+
+            new Solution().mergeSort(arr, 0, arr.length - 1);
+
+            for (int i = 0; i < arr.length; i++) System.out.print(arr[i] + " ");
+
+            System.out.println();
+
+            System.out.println("~");
+        }
+    }
+}
+class Solution {
+    void mergeSort(int arr[], int l, int r) {
+        if (l < r) {
+            int m = (l + r) / 2;
+            mergeSort(arr, l, m);
+            mergeSort(arr, m + 1, r);
+            merge(arr, l, m, r);
+        }
+    }
+
+    void merge(int arr[], int l, int m, int r) {
+        int n1 = m - l + 1;
+        int n2 = r - m;
+
+        int[] left = new int[n1];
+        int[] right = new int[n2];
+
+        for (int i = 0; i < n1; i++) {
+            left[i] = arr[l + i];
+        }
+        for (int i = 0; i < n2; i++) {
+            right[i] = arr[m + 1 + i];
+        }
+        int i = 0, j = 0;
+        int k = l;
+        while (i < n1 && j < n2) {
+            if (left[i] <= right[j]) {
+                arr[k] = left[i];
+                i++;
+            } else {
+                arr[k] = right[j];
+                j++;
+            }
+            k++;
+        }
+        while (i < n1) {
+            arr[k] = left[i];
+            i++;
+            k++;
+        }
+
+        while (j < n2) {
+            arr[k] = right[j];
+            j++;
+            k++;
+        }
+    }
+}
+
+
+4 )  Recursive Bubble Sort
+
+
+
+import java.io.*;
+import java.util.*;
+class Solution {
+    public static void bubbleSort(int arr[]) {
+        int n = arr.length;
+        
+        for (int i = 0; i < n - 1; i++) {
+            boolean swapped = false;
+            
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    
+                    swapped = true;
+                }
+            }
+            
+           
+            if (!swapped) {
+                break;
+            }
+        }
+    }
+}
+
+
+class Sorting {
+
+    static void printArray(int arr[]) {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i) System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim()); 
+        while (t > 0) {
+            String inputLine[] = br.readLine().trim().split(" ");
+            int n = inputLine.length;
+            int arr[] = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = Integer.parseInt(inputLine[i]);
+            }
+            new Solution().bubbleSort(arr);
+            printArray(arr);
+
+            t--;
+        }
+    }
+}
+
+
+
+5 )  Insertion Sort
+
+
+
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+class Main {
+    public static void main(String args[]) throws IOException {
+        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(read.readLine());
+
+        while (t-- > 0) {
+
+            ArrayList<Integer> array1 = new ArrayList<Integer>();
+            String line = read.readLine();
+            String[] tokens = line.split(" ");
+            for (String token : tokens) {
+                array1.add(Integer.parseInt(token));
+            }
+            ArrayList<Integer> v = new ArrayList<Integer>();
+            int[] arr = new int[array1.size()];
+            int idx = 0;
+            for (int i : array1) arr[idx++] = i;
+            new Solution().insertionSort(arr);
+            for (int i = 0; i < arr.length; i++) System.out.print(arr[i] + " ");
+            System.out.println();
+            System.out.println("~");
+        }
+    }
+}
+class Solution {
+    public void insertionSort(int arr[]) {
+        for (int i = 1; i < arr.length; i++) {
+            int key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
+    }
+}
+
+
+6 ) Quick Sort
+
+
+//{ Driver Code Starts
+import java.io.*;
+import java.util.*;
+
+class Sorting {
+    static void printArray(int arr[]) {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i) System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+
+    // Driver program
+    public static void main(String args[]) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+        while (t-- > 0) {
+            String inputLine[] = br.readLine().trim().split(" ");
+            int n = inputLine.length;
+            int arr[] = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = Integer.parseInt(inputLine[i]);
+            }
+
+            new Solution().quickSort(arr, 0, n - 1);
+            printArray(arr);
+        }
+    }
+}
+
+
+
+class Solution {
+    static void quickSort(int arr[], int low, int high) {
+        if (low < high) {
+            int pi = partition(arr, low, high);
+            quickSort(arr, low, pi - 1);  
+            quickSort(arr, pi + 1, high); 
+        }
+    }
+    static int partition(int arr[], int low, int high) {
+        int pivot = arr[high];
+        int i = (low - 1);
+        for (int j = low; j < high; j++) {
+            if (arr[j] <= pivot) {
+                i++;
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+        return i + 1;
+    }
+}
